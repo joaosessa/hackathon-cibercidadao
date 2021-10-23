@@ -27,7 +27,8 @@ module.exports = function (api) {
     for (const article of data) {
       collection.addNode({
         id: article.id,
-        title: article.title
+        title: article.title,
+        description: article.description
       })
     }
   })
