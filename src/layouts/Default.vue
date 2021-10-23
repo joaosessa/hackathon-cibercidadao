@@ -1,16 +1,26 @@
 <template>
-  <div class="layout">
-    <header class="header">
-      <strong>
-        <g-link to="/">{{ $static.metadata.siteName }}</g-link>
-      </strong>
-      <nav class="nav">
-        <g-link class="nav__link" to="/">Home</g-link>
-        <g-link class="nav__link" to="/about/">About</g-link>
-      </nav>
-    </header>
-    <slot/>
-  </div>
+  <v-app>
+    <v-app-bar app flat>
+      <v-toolbar-title>FAQ Cidadão</v-toolbar-title>
+
+      <v-text-field 
+        placeholder="O que você procura?" 
+        class="ml-8"
+        style="max-width: 350px;"
+        prepend-inner-icon="mdi-magnify"
+        outlined
+        rounded
+        dense
+        hide-details
+      />
+
+      <v-spacer />
+      <v-btn>Botão</v-btn>
+    </v-app-bar>
+    <v-main>
+      <slot />
+    </v-main>
+  </v-app>
 </template>
 
 <static-query>

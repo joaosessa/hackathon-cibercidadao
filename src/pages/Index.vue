@@ -1,20 +1,35 @@
 <template>
   <Layout>
+    <v-container>
+      <v-tabs v-model="tab" centered>
+        <v-tab>Categoria 1</v-tab>
+        <v-tab>Categoria 2</v-tab>
+        <v-tab>Categoria 3</v-tab>
+      </v-tabs>
+    </v-container>
 
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
-
+    <v-card
+      class="mx-auto"
+      max-width="344"
+    >
+      <v-card-text>
+        <p class="text-h4 text--primary">
+          Título Artigo
+        </p>
+        <p>Descrição artigo...</p>
+        <div class="text--primary">
+          Preview do artigo preview do artigo preview do artigo...
+        </div>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn
+          text
+          color="blue lighten-1"
+        >
+          Ler mais...
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </Layout>
 </template>
 
@@ -22,6 +37,28 @@
 export default {
   metaInfo: {
     title: 'Hello, world!'
+  },
+  data() {
+    return {
+      tab: 0
+    }
+  },
+  watch: {
+    tab(val) {
+      if (tab === 0) {
+        this.showAllEvents()
+      } else {
+        this.showEventsByType()
+      }
+    }
+  },
+  methods: {
+    showAllEvents() {
+      console.log("all")
+    },
+    showEventsByType() {
+      console.log("type")
+    }
   }
 }
 </script>
