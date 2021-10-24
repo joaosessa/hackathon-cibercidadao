@@ -12,35 +12,11 @@
           <v-tab>
             Todos
           </v-tab>
-          <v-tab>
-            Saúde
-          </v-tab>
-          <v-tab>
-            Educação
-          </v-tab>
-          <v-tab>
-            Segurança
-          </v-tab>
-          <v-tab>
-            Documentos
-          </v-tab>
-          <v-tab>
-            Trânsito
-          </v-tab>
-          <v-tab>
-            Saúde
-          </v-tab>
-          <v-tab>
-            Educação
-          </v-tab>
-          <v-tab>
-            Segurança
-          </v-tab>
-          <v-tab>
-            Documentos
-          </v-tab>
-          <v-tab>
-            Trânsito
+
+          <v-tab 
+            v-for="edge in $page.categories.edges.slice().reverse()" :key="edge.node.id"
+          >
+            {{ edge.node.name }}
           </v-tab>
 
         </v-tabs>
@@ -49,7 +25,7 @@
 
       <v-row>
         <v-flex x12 md6 lg4
-          v-for="edge in $page.articles.edges" :key="edge.node.id"
+          v-for="edge in articles" :key="edge.node.id"
         >
           <v-card class="mt-5 mx-1">
             <v-card-text>
@@ -82,6 +58,15 @@ query {
         id
         title
         description
+        category
+      }
+    }
+  }
+  categories: allCategory {
+    edges {
+      node {
+        id
+        name
       }
     }
   }
@@ -95,24 +80,30 @@ export default {
   },
   data() {
     return {
-      tab: 0
+      tab: 0,
+      articles: []
     }
+  },
+  mounted() {
+    this.articles = this.$page.articles.edges
   },
   watch: {
     tab(val) {
-      if (tab === 0) {
+      if (this.tab === 0) {
         this.showAllEvents()
       } else {
-        this.showEventsByType()
+        this.showEventsByType(val)
       }
     }
   },
   methods: {
     showAllEvents() {
-      console.log("all")
+      this.articles = this.$page.articles.edges
     },
-    showEventsByType() {
-      console.log("type")
+    showEventsByType(val) {
+      this.articles = this.articles = this.$page.articles.edges.filter((edge) => {
+        return edge.node.category === val
+      })
     }
   }
 }

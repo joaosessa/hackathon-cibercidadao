@@ -18,17 +18,30 @@ module.exports = function (api) {
   })
 
   api.loadSource(async actions => {
-    const { data } = await axios.get('http://localhost:1337/articles')
+    const { data: articles } = await axios.get('http://localhost:1337/articles')
+    const { data: categories } = await axios.get('http://localhost:1337/categories')
 
-    const collection = actions.addCollection({
+    const articleCollection = actions.addCollection({
       typeName: 'Article'
     })
 
-    for (const article of data) {
-      collection.addNode({
+    const categoryCollection = actions.addCollection({
+      typeName: 'Category'
+    })
+
+    for (const article of articles) {
+      articleCollection.addNode({
         id: article.id,
         title: article.title,
-        description: article.description
+        description: article.description,
+        category: article.categories[0].id
+      })
+    }
+
+    for (const category of categories) {
+      categoryCollection.addNode({
+        id: category.id,
+        name: category.name
       })
     }
   })
