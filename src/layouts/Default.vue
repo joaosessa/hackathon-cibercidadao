@@ -1,25 +1,54 @@
 <template>
   <v-app>
-    <v-app-bar app flat>
-      <v-toolbar-title>FAQ Cidadão</v-toolbar-title>
+    <v-app-bar
+      flat
+      class="navBar"
+      color="blue darken-1"
+      height="100"
+    > 
 
-      <v-text-field 
-        placeholder="O que você procura?" 
-        class="ml-8"
-        style="max-width: 350px;"
-        prepend-inner-icon="mdi-magnify"
-        outlined
-        rounded
-        dense
-        hide-details
-      />
+      <v-toolbar-title>
+        <g-link style="color:#fff;text-decoration:none" to='/' > Guia Cidadão </g-link>
+      </v-toolbar-title>
 
       <v-spacer />
-      <v-btn>Botão</v-btn>
+
+      <img style="height:80px;" src="https://cdn.es.gov.br/images/logo/governo/brasao/right-white/Brasao_Governo_240.png" />
+
     </v-app-bar>
-    <v-main>
+
+    <v-container>
+        <v-row class="mt-15 px-3">
+          <v-flex xs12 text-center class="mb-5">
+            <h1 class="display-1">Central de Dúvidas</h1>
+          </v-flex>
+          <v-flex md6 offset-md-3 xs12>
+            <v-text-field
+              solo
+              hide-details
+              label="O que você procura?"
+              prepend-inner-icon="mdi-magnify"
+            />
+          </v-flex>
+        </v-row>
+    </v-container>
+
+    <v-main
+      class="my-10 px-3"
+    >
       <slot />
     </v-main>
+
+    <v-footer 
+      color="pink darken-1 white--text"
+      mt-5
+    >
+      <v-container>
+      <p>Praça João Clímaco, 142 - Cidade Alta, Centro<br/>
+      CEP: 29018-110 - Vitória / ES<br/>
+      Tel.: (27) 3636-1024</p>
+      </v-container>
+    </v-footer>
   </v-app>
 </template>
 
@@ -30,31 +59,3 @@ query {
   }
 }
 </static-query>
-
-<style>
-body {
-  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  margin:0;
-  padding:0;
-  line-height: 1.5;
-}
-
-.layout {
-  max-width: 760px;
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 80px;
-}
-
-.nav__link {
-  margin-left: 20px;
-}
-</style>

@@ -1,33 +1,74 @@
 <template>
   <Layout>
     <v-container>
-      <v-tabs v-model="tab" centered>
-        <v-tab>Categoria 1</v-tab>
-        <v-tab>Categoria 2</v-tab>
-        <v-tab>Categoria 3</v-tab>
-      </v-tabs>
-    
-      <v-row>
-        <v-card
-          v-for="edge in $page.articles.edges" :key="edge.node.id"
-          max-width="344"
-          class="mt-5 mx-1"
+      <v-flex xs12 md10 offset-md-1 mb-10>
+        <v-tabs
+          v-model="tab"
+          color="black"
+          show-arrows
         >
-          <v-card-text>
-            <p class="text-h4 text--primary">
-              {{ edge.node.title }}
-            </p>
-            <p>{{ edge.node.description }}</p>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn
-              text
-              color="blue lighten-1"
-            >
-              Ler mais...
-            </v-btn>
-          </v-card-actions>
-        </v-card>
+          <v-tabs-slider></v-tabs-slider>
+
+          <v-tab>
+            Todos
+          </v-tab>
+          <v-tab>
+            Saúde
+          </v-tab>
+          <v-tab>
+            Educação
+          </v-tab>
+          <v-tab>
+            Segurança
+          </v-tab>
+          <v-tab>
+            Documentos
+          </v-tab>
+          <v-tab>
+            Trânsito
+          </v-tab>
+          <v-tab>
+            Saúde
+          </v-tab>
+          <v-tab>
+            Educação
+          </v-tab>
+          <v-tab>
+            Segurança
+          </v-tab>
+          <v-tab>
+            Documentos
+          </v-tab>
+          <v-tab>
+            Trânsito
+          </v-tab>
+
+        </v-tabs>
+      </v-flex>
+      
+
+      <v-row>
+        <v-flex x12 md6 lg4
+          v-for="edge in $page.articles.edges" :key="edge.node.id"
+        >
+          <v-card class="mt-5 mx-1">
+            <v-card-text>
+              <p class="text-h4 text--primary">
+                {{ edge.node.title }}
+              </p>
+              <p>{{ edge.node.description }}</p>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn
+                depressed
+                align-end
+                color="blue lighten-1 white--text"
+              >
+                Ler mais...
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-flex>
       </v-row>
     </v-container>
   </Layout>
