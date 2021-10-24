@@ -22,7 +22,8 @@ module.exports = function (api) {
     const { data: categories } = await axios.get('http://localhost:1337/categories')
 
     const articleCollection = actions.addCollection({
-      typeName: 'Article'
+      typeName: 'Article',
+      path: '/articles/:id'
     })
 
     const categoryCollection = actions.addCollection({
@@ -32,8 +33,10 @@ module.exports = function (api) {
     for (const article of articles) {
       articleCollection.addNode({
         id: article.id,
+        path: '/articles/' + article.id,
         title: article.title,
         description: article.description,
+        content: article.content,
         category: article.categories[0].id
       })
     }

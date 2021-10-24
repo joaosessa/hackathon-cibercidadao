@@ -36,6 +36,7 @@
             </v-card-text>
             <v-card-actions>
               <v-btn
+                @click="$router.push(`/articles/${edge.node.id}`)"
                 depressed
                 align-end
                 color="blue lighten-1 white--text"
