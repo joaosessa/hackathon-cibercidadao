@@ -24,6 +24,7 @@
           </v-flex>
           <v-flex md6 offset-md-3 xs12>
             <v-text-field
+              v-model="searchText"
               solo
               hide-details
               label="O que você procura?"
@@ -36,7 +37,7 @@
     <v-main
       class="my-10 px-3"
     >
-      <slot />
+      <slot :searchText="searchText" />
     </v-main>
 
     <v-footer 
@@ -59,3 +60,13 @@ query {
   }
 }
 </static-query>
+
+<script>
+export default {
+  data() {
+    return {
+      searchText: ''
+    }
+  }
+}
+</script>

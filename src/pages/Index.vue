@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout v-slot="{ searchText }">
     <v-container>
       <v-flex xs12 md10 offset-md-1 mb-10>
         <v-tabs
@@ -25,7 +25,7 @@
 
       <v-row>
         <v-flex x12 md6 lg4
-          v-for="edge in articles" :key="edge.node.id"
+          v-for="edge in getArticles(searchText)" :key="edge.node.id"
         >
           <v-card class="mt-5 mx-1">
             <v-card-text>
@@ -104,13 +104,12 @@ export default {
       this.articles = this.articles = this.$page.articles.edges.filter((edge) => {
         return edge.node.category === val
       })
+    },
+    getArticles(searchText) {
+      return this.articles.filter((edge) => {
+        return edge.node.title.toLowerCase().includes(searchText.toLowerCase())
+      })
     }
   }
 }
 </script>
-
-<style>
-.home-links a {
-  margin-right: 1rem;
-}
-</style>
